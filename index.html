@@ -20,6 +20,18 @@
     <script>
 
       $('form').on('addq', function(event) {
+        const form = $(this);
+
+        // Create div
+        const question = $('<div></div>');
+
+        const input = form.find('input'); // JQuery object represent all inputs
+        const q = $(`<div>${input.val()}</div>`)
+        input.val(''); // Empty out the box
+        question.append(q);
+
+        $('#history').append(question);
+      });
 
 
 
