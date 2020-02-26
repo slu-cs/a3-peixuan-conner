@@ -7,9 +7,10 @@
   </head>
   <body>
     <h1>Create New Question</h1>
-    <form>
-      <input type="text" name="new">
-      <button type="addq">Add Question</button>
+    <form id='questionbox'>
+      <input type="text" id="question">
+      <input type="text" id="answer">
+      <button>Add Answer</button>
     </form>
     <div id="history"></div>
     <button type="submit">Submit</button>
@@ -19,18 +20,22 @@
       crossorigin="anonymous"></script>
     <script>
 
-      $('form').on('addq', function(event) {
+      $('#questionbox').on('submit', function(event) {
         const form = $(this);
+        event.preventDefault();
 
         // Create div
-        const question = $('<div></div>');
+        const answer = $('<div class="row"></div>');
 
-        const input = form.find('input'); // JQuery object represent all inputs
-        const q = $(`<div>${input.val()}</div>`)
+        const input = form.find('#answer'); // JQuery object represent all inputs
+        const a = $(`<div>${input.val()}</div>`)
         input.val(''); // Empty out the box
-        question.append(q);
+        answer.append(a);
 
-        $('#history').append(question);
+        const del = $(`<button type="delete">Delete</button>`)
+        answer.append(del);
+
+        $('#history').append(answer);
       });
 
 
