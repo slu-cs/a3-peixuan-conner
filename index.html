@@ -6,23 +6,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Create New Question</h1>
-    <form id='questionbox'>
-      <input type="text" id="question">
-      <input type="text" id="answer">
-      <button>Add Answer</button>
-    </form>
-    <div id="history"></div>
-    <button type="submit">Submit</button>
+    <div id="before-submit">
+      <h1>Create New Question</h1>
+      <form id='questionbox'>
+        <input type="text" id="question">
+        <input type="text" id="answer">
+        <button>Add Answer</button>
+      </form>
+      <div id="history"></div>
+      <button id="submit">Submit</button>
+    </div>
+    </div id="after-submit"></div>
     <script
       src="http://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
     <script>
 
+      const answers = [];
+
       $('#questionbox').on('submit', function(event) {
         const form = $(this);
         event.preventDefault();
+        console.log('test');
 
         // Create div
         const answer = $('<div class="row border"></div>');
@@ -40,6 +46,10 @@
 
       $('div').on('click', 'button', function(event) {
         $(this).closest('div').remove();
+      });
+
+      $('body').on('click', '#submit', function(event) {
+        $(this).closest('form').remove();
       });
 
     </script>
