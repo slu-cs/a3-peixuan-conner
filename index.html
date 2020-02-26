@@ -38,9 +38,9 @@
         $('#history').append(answer);
       });
 
-
-
-
+      $('div').on('click', 'button', function(event) {
+        $(this).closest('div').remove();
+      });
 
     </script>
   </body>
