@@ -16,7 +16,7 @@
       <div id="history"></div>
       <button id="submit">Submit</button>
     </div>
-    </div id="after-submit"></div>
+    <div id="after-submit"></div>
     <script
       src="http://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -38,18 +38,19 @@
         input.val(''); // Empty out the box
         answer.append(a);
 
-        const del = $(`<button type="delete">Delete</button>`)
+        const del = $(`<button type="delete" id="delete">Delete</button>`)
         answer.append(del);
 
         $('#history').append(answer);
       });
 
-      $('div').on('click', 'button', function(event) {
-        $(this).closest('div').remove();
+       $('div').on('click', '#delete', function(event) {
+       $(this).closest('div').remove();
       });
 
       $('body').on('click', '#submit', function(event) {
-        $(this).closest('form').remove();
+        $(this).closest('#before-submit').remove();
+
       });
 
     </script>
