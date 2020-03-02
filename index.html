@@ -1,4 +1,4 @@
-<!-- Examples of -->
+ <!-- Examples of -->
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
@@ -14,9 +14,14 @@
         <button>Add Answer</button>
       </form>
       <div id="history"></div>
-      <button id="submit">Submit</button>
+
     </div>
-    <div id="after-submit"></div>
+    <div id="after-submit">
+      <h2 id="question"></h2>
+        <button id="submit">Submit</button>
+      <div id="answer">
+      </div>
+    </div>
     <script
       src="http://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -34,7 +39,9 @@
         const answer = $('<div class="row border"></div>');
 
         const input = form.find('#answer'); // JQuery object represent all inputs
+
         const a = $(`<div>${input.val()}</div>`)
+
         input.val(''); // Empty out the box
         answer.append(a);
 
@@ -48,8 +55,12 @@
        $(this).closest('div').remove();
       });
 
-      $('body').on('click', '#submit', function(event) {
+      $('#after-submit').on('click', '#submit', function(event) {
+        const qinput= $('body').closest('form').find('#question');
+        event.preventDefault();
+        const b = $(`<div>${qinput.val()}</div>`)
         $(this).closest('#before-submit').remove();
+        $('#question').append(b);
 
       });
 
