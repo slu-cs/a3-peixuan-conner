@@ -24,7 +24,7 @@
       crossorigin="anonymous"></script>
     <script>
 
-      const answers = [];
+      let numanswers = 0;
 
       $('form').on('submit', function(event) {
         const form = $(this);
@@ -32,14 +32,14 @@
         console.log('test');
 
         // Create div
-        const answer = $('<div class="row border"></div>');
+        const answer = $('<div class="row border" id="answer-row"></div>');
 
         const input = form.find('#answer'); // JQuery object represent all inputs
 
-        const a = $(`<div>${input.val()}</div>`)
+        const a = $(`<div id='a-answer'>${input.val()}</div>`)
 
         input.val(''); // Empty out the box
-        answers.push(a);
+        numanswers = numanswers + 1;
         answer.append(a);
 
         const del = $(`<button type="delete" id="delete">Delete</button>`)
@@ -50,17 +50,27 @@
 
        $('div').on('click', '#delete', function(event) {
        $(this).closest('div').remove();
+       numanswers = numanswers - 1;
 
       });
 
       $('#submit').on('click', function(event) {
         const qinput= $('#questionbox').find('#question');
         event.preventDefault();
-        const b = $(`<div>${qinput.val()}</div>`);
+        const b = $(`<h3>${qinput.val()}</h3>`);
         $('#after-submit').append(b);
-        for (const a of answers) {
-          $('#after-submit').append(a);
-        }
+
+        const c = $(`<div></div>`)
+        for (let i = 0; i < numanswers; i ++) {
+          const answer = $('<div class="row border" id="answer-row"></div>');
+          let a = $('#history').find('#a-answer');
+          answer.append(a);
+          const box = $(`<button type="box">Check</button>`);
+          answer.append(box);
+          c.append(answer);
+        };
+        $('#after-submit').append(c);
+
 
         $(this).closest('#before-submit').remove();
 
