@@ -16,7 +16,9 @@
       <div id="history"></div>
       <button id="submit">Submit</button>
     </div>
-    <div id="after-submit"></div>
+    <div id="after-submit" class="after-submit"></div>
+    </div>
+    <div id="result">
     </div>
     <script
       src="http://code.jquery.com/jquery-3.4.1.min.js"
@@ -65,7 +67,7 @@
           const answer = $('<div class="row border" id="answer-row"></div>');
           let a = $('#history').find('#a-answer');
           answer.append(a);
-          const box = $(`<button type="box">Check</button>`);
+          const box = $(`<button type="box" id="${i}" >Check</button>`);
           answer.append(box);
           c.append(answer);
         };
@@ -73,6 +75,15 @@
 
 
         $(this).closest('#before-submit').remove();
+
+      });
+      let resultcount=[numanswers]
+
+       $('.after-submit').on('click', 'button', function(event) {
+        const id = $(this).attr('id');
+        resultcount[id] +=1
+        $('#result').append(resultcount[id])
+        console.log(id);
 
       });
 
