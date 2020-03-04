@@ -82,10 +82,11 @@
       let resultcount=[numanswers]
 
        $('.after-submit').on('click', 'button', function(event) {
-        const id = $(this).attr('id');
+        let id = $(this).attr('id');
         resultcount[id] +=1
         $('#result').append(resultcount[id])
         console.log(id);
+        console.log(resultcount[id]);
 
       });
 
