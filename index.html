@@ -20,7 +20,6 @@
     </div>
     <div id="after-submit" class="after-submit"></div>
     </div>
-    <div id="result">
     </div>
     <script
       src="http://code.jquery.com/jquery-3.4.1.min.js"
@@ -28,7 +27,7 @@
       crossorigin="anonymous"></script>
     <script>
 
-      let numanswers = 0;
+      const resultcount = []
 
       $('form').on('submit', function(event) {
         const form = $(this);
@@ -43,7 +42,7 @@
         const a = $(`<div id='a-answer'>${input.val()}</div>`)
 
         input.val(''); // Empty out the box
-        numanswers = numanswers + 1;
+        resultcount.push(0);
         answer.append(a);
 
         const del = $(`<button type="delete" id="delete">Delete</button>`)
@@ -52,9 +51,9 @@
         $('#history').append(answer);
       });
 
-       $('div').on('click', '#delete', function(event) {
+      $('div').on('click', '#delete', function(event) {
        $(this).closest('div').remove();
-       numanswers = numanswers - 1;
+       resultcount.pull();
 
       });
 
@@ -65,12 +64,14 @@
         $('#after-submit').append(b);
 
         const c = $(`<div></div>`)
-        for (let i = 0; i < numanswers; i ++) {
+        for (let i = 0; i < resultcount.length; i ++) {
           const answer = $('<div class="row border" id="answer-row"></div>');
           let a = $('#history').find('#a-answer');
           answer.append(a);
-          const box = $(`<button type="box" id="${i}" >Check</button>`);
+          const box = $(`<button type="box" id="${i}" >Choose</button>`);
           answer.append(box);
+          var count = $(`<div class="count">${resultcount[i]}</div>`);
+          answer.append(count);
           c.append(answer);
         };
         $('#after-submit').append(c);
@@ -79,14 +80,13 @@
         $(this).closest('#before-submit').remove();
 
       });
-      let resultcount=[numanswers]
 
-       $('.after-submit').on('click', 'button', function(event) {
+      $('.after-submit').on('click', 'button', function(event) {
         let id = $(this).attr('id');
-        resultcount[id] +=1
-        $('#result').append(resultcount[id])
-        console.log(id);
-        console.log(resultcount[id])
+        id = parseInt(id);
+        resultcount[id] += 1;
+        $(this).closest('#answer-row').find('.count').html(resultcount[id]);
+
 
       });
 
