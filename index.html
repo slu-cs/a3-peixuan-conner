@@ -37,10 +37,12 @@
         // Create div
         const answer = $('<div class="row border ANSWER-ROW"></div>');
         const input = form.find('#answer'); // JQuery object represent all inputs
+        const item = input.val()
 
-        const a = $(`<div class="col-auto border-right bprder-dark" id="ANSWER">${input.val()}</div>`)
+        const a = $(`<div class="col-auto border-right bprder-dark .bg-light  rounded" id="ANSWER">${item}</div>`)
 
         input.val(''); // Empty out the box
+        if(item){
         resultcount.push(0);
         answer.append(a);
 
@@ -49,6 +51,7 @@
         answer.append(del);
 
         $('#history').append(answer);
+      }
       });
 
       // delete an answer
