@@ -16,7 +16,7 @@
         <button id="add-answer" class=" btn btn-primary">Add Answer</button>
       </form>
       <div class="pl-4" id="history"></div>
-      <button id="submit" class=" btn btn-primary">Submit</button>
+      <button id="submit" class=" btn btn-primary ml-3">Submit</button>
     </div>
     <div id="after-submit" class="after-submit"></div>
     </div>
@@ -65,7 +65,7 @@
         const b = $(`<h3 class="col-auto border-right bprder-dark">${qinput.val()}</h3>`);
         $('#after-submit').append(b);
 
-        const c = $(`<div class="pl-4"></div>`); //div class to hold the ansers
+        const c = $(`<div class="pl-4"></div>`); //div class to hold the answers
         for (let i = 0; i < resultcount.length; i ++) {
           const answer = $('<div class="row border ANSWER-ROW"></div>');
           let a = $('#history').find('#ANSWER');
