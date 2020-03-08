@@ -43,14 +43,14 @@
 
         input.val(''); // Empty out the box
         if(item){
-        resultcount.push(0);
-        answer.append(a);
+          resultcount.push(0);
+          answer.append(a);
 
-        // create a delete button
-        const del = $(`<button class="DELETE btn btn-primary  col-1">Delete</button>`)
-        answer.append(del);
+          // create a delete button
+          const del = $(`<button class="DELETE btn btn-primary  col-1">Delete</button>`)
+          answer.append(del);
 
-        $('#history').append(answer);
+          $('#history').append(answer);
       }
       });
 
@@ -65,24 +65,28 @@
       $('#submit').on('click', function(event) {
         const qinput= $('#questionbox').find('#question');
         event.preventDefault();
-        const b = $(`<h3 class="col-auto border-right bprder-dark">${qinput.val()}</h3>`);
-        $('#after-submit').append(b);
+        const item = qinput.val();
+        const b = $(`<h3 class="col-auto border-right border-dark">${item}</h3>`);
 
-        const c = $(`<div class="pl-4"></div>`); //div class to hold the answers
-        for (let i = 0; i < resultcount.length; i ++) {
-          const answer = $('<div class="row border ANSWER-ROW"></div>');
-          let a = $('#history').find('#ANSWER');
-          answer.append(a);
-          const chooser = $(`<button class="col-1 btn btn-primary" id="${i}" >Choose</button>`);
-          answer.append(chooser);
-          var count = $(`<div>answer${i+1}:</div><div class="count col-auto">${resultcount[i]}</div>`);
-          answer.append(count);
-          c.append(answer);
-        };
-        $('#after-submit').append(c);
+        if (item && resultcount.length > 0){
 
-        $(this).closest('#before-submit').remove();
+          $('#after-submit').append(b);
 
+          const c = $(`<div class="pl-4"></div>`); //div class to hold the answers
+          for (let i = 0; i < resultcount.length; i ++) {
+            const answer = $('<div class="row border ANSWER-ROW"></div>');
+            let a = $('#history').find('#ANSWER');
+            answer.append(a);
+            const chooser = $(`<button class="col-1 btn btn-primary" id="${i}" >Choose</button>`);
+            answer.append(chooser);
+            var count = $(`<div class="ml-4">Answer ${i+1} Tally: </div><div class="count col-auto">${resultcount[i]}</div>`);
+            answer.append(count);
+            c.append(answer);
+          };
+          $('#after-submit').append(c);
+
+          $(this).closest('#before-submit').remove();
+      };
       });
 
       // choose an answer
