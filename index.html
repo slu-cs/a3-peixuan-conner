@@ -7,16 +7,16 @@
   </head>
   <body>
     <div id="before-submit">
-      <h1 >Create New Question</h1>
-      <form id='questionbox'>
+      <h1 class="col-auto border-bottom bprder-dark">Create New Question</h1>
+      <form id='questionbox' class="col-auto border-right bprder-dark">
         <label for="newquestion">Question:</label>
         <input type="newquestion" id="question">
         <label for="newanswer">New Answer:</label>
         <input type="newanswertext" id="answer">
-        <button id="add-answer">Add Answer</button>
+        <button id="add-answer" class=" btn btn-primary">Add Answer</button>
       </form>
       <div class="pl-4" id="history"></div>
-      <button id="submit">Submit</button>
+      <button id="submit" class=" btn btn-primary">Submit</button>
     </div>
     <div id="after-submit" class="after-submit"></div>
     </div>
@@ -45,7 +45,7 @@
         answer.append(a);
 
         // create a delete button
-        const del = $(`<button class="DELETE btn btn-primary  col-2">Delete</button>`)
+        const del = $(`<button class="DELETE btn btn-primary  col-1">Delete</button>`)
         answer.append(del);
 
         $('#history').append(answer);
@@ -62,7 +62,7 @@
       $('#submit').on('click', function(event) {
         const qinput= $('#questionbox').find('#question');
         event.preventDefault();
-        const b = $(`<h3>${qinput.val()}</h3>`);
+        const b = $(`<h3 class="col-auto border-right bprder-dark">${qinput.val()}</h3>`);
         $('#after-submit').append(b);
 
         const c = $(`<div class="pl-4"></div>`); //div class to hold the ansers
@@ -70,9 +70,9 @@
           const answer = $('<div class="row border ANSWER-ROW"></div>');
           let a = $('#history').find('#ANSWER');
           answer.append(a);
-          const chooser = $(`<button class="col-2 btn btn-primary" id="${i}" >Choose</button>`);
+          const chooser = $(`<button class="col-1 btn btn-primary" id="${i}" >Choose</button>`);
           answer.append(chooser);
-          var count = $(`<div class="count col-auto">${resultcount[i]}</div>`);
+          var count = $(`<div>answer${i+1}:</div><div class="count col-auto">${resultcount[i]}</div>`);
           answer.append(count);
           c.append(answer);
         };
